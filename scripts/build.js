@@ -21,11 +21,13 @@ function build() {
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
       if (err) {
-        if (!err.message) {
-          return reject(err);
-        }
+        console.log(err)
+        return reject(err);
+      } else if (stats.compilation.errors.length > 0) {
+        console.log(stats.compilation.errors)
+        return reject(stats.compilation.errors)
       } else {
-        return resolve(stats);
+        resolve(stats)
       }
     });
   });

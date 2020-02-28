@@ -23,5 +23,6 @@ export const copyToClipboard = (content: string) => {
   input.focus()
   input.select()
   document.execCommand('copy')
+  input.blur()
   document.body.removeChild(input)
 }

@@ -6,6 +6,9 @@
   "icons": {
     "16": "img/icon-16.png"
   },
+  "browser_action": {
+    "default_title": "Copy as Markdown"
+  },
   "background": {
     "scripts": [
       "/js/background_script.bundle.js"
@@ -25,11 +28,7 @@
   ],
   "permissions": [
     "contextMenus",
-    "activeTab",
-    "tabs",
-    "storage",
-    "cookies",
-    "alarms"
+    "activeTab"
   ],
   "content_security_policy": "default-src 'self'; script-src 'self'; connect-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:;"
 }

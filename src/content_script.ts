@@ -1,11 +1,10 @@
 import {getHtmlSelection, turndownServie, copyToClipboard} from './types'
 
 const onExtensionMessage = (request: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => {
-  console.log('receive message ' + request)
+  console.log('receive message:')
+  console.log(request)
   if (request['copy-as-markdown'] != undefined) {
-    const markdown = turndownServie.turndown(getHtmlSelection())
-    copyToClipboard(markdown)
-    sendResponse({selection: markdown});
+    sendResponse({selection: getHtmlSelection()});
   }
 }
 const initContentScript: () => void = async () => {
