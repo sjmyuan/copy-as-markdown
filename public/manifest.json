@@ -1,0 +1,35 @@
+{
+  "version": "0.0.1",
+  "name": "copy-as-markdown",
+  "manifest_version": 2,
+  "description": "Copy as Markdown",
+  "icons": {
+    "16": "img/icon-16.png"
+  },
+  "background": {
+    "scripts": [
+      "/js/background_script.bundle.js"
+    ],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "all_frames": true,
+      "js": [
+        "/js/content_script.bundle.js"
+      ]
+    }
+  ],
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "tabs",
+    "storage",
+    "cookies",
+    "alarms"
+  ],
+  "content_security_policy": "default-src 'self'; script-src 'self'; connect-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:;"
+}
