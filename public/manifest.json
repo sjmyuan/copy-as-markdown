@@ -26,6 +26,15 @@
       ]
     }
   ],
+  "commands": {
+    "copy-as-markdown": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Copy as Markdown"
+    }
+  },
   "permissions": [
     "contextMenus",
     "activeTab"

@@ -4,7 +4,7 @@ import {gfm} from 'turndown-plugin-gfm';
 export const turndownServie = new TurndownServie({headingStyle: 'atx', codeBlockStyle: 'fenced'});
 turndownServie.use(gfm)
 
-export const getHtmlSelection = () => {
+export const getHtmlSelection: () => string | undefined = () => {
   const selection = window.getSelection()
   if (selection) {
     const range = selection.getRangeAt(0);
