@@ -12,7 +12,7 @@ export const getHtmlSelection: () => string | undefined = () => {
     div.appendChild(range.cloneContents());
     return div.innerHTML;
   } else {
-    return ''
+    return undefined
   }
 }
 
