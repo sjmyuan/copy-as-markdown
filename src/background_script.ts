@@ -1,20 +1,9 @@
 import {turndownServie, copyToClipboard} from './types'
 
-let selectedTabId: number = -1
-
 const sendMessageToTab = () => {
   chrome.tabs.query({active: true}, (tabs) => {
     if (tabs[0]) {
-      chrome.tabs.sendMessage(tabs[0].id as number, {'copy-as-markdown': true}, (response: {selection?: string}) => {
-        if (response && response.selection) {
-          const markdown = turndownServie.turndown(response.selection)
-          copyToClipboard(markdown)
-          console.log('Copied')
-          console.log(markdown)
-        } else {
-          console.log('There is no selection.')
-        }
-      })
+      chrome.tabs.executeScript(tabs[0].id as number, {file: 'js/content_script.bundle.js'})
     }
     else {
       console.log('No active tab')
@@ -33,23 +22,19 @@ const onCommandTriggered = (command: string) => {
   }
 }
 
-const onTabUpdated = (tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab) => {
-  if (changeInfo.status == "complete" && tabId == selectedTabId) {
-    //chrome.tabs.executeScript(tabId, {file: chrome.runtime.getURL('js/content_script.bundle.js')}, (result: any) => {
-    //console.log("Inject script result:")
-    //console.log(result)
-    //})
-    console.log(changeInfo)
-    console.log(tab)
-    chrome.tabs.executeScript(tabId, {code: 'console.log("injected")'}, (result: any) => {
-      console.log("Inject script result:")
-      console.log(result)
-    })
+const onMessageReceived = (message: {selection?: string},
+  sender: chrome.runtime.MessageSender,
+  sendResponse: (response?: any) => void) => {
+  if (message && message.selection) {
+    const markdown = turndownServie.turndown(message.selection)
+    copyToClipboard(markdown)
+    console.log('Copied')
+    console.log(markdown)
+    sendResponse(true)
+  } else {
+    console.log('There is no selection.')
+    sendResponse(false)
   }
-}
-
-const onTabActivated = (activeInfo: chrome.tabs.TabActiveInfo) => {
-  selectedTabId = activeInfo.tabId
 }
 
 const initBackgroundScript = () => {
@@ -64,13 +49,8 @@ const initBackgroundScript = () => {
 
     chrome.commands.onCommand.addListener(onCommandTriggered);
 
-    chrome.tabs.onUpdated.addListener(onTabUpdated)
+    chrome.runtime.onMessage.addListener(onMessageReceived)
 
-    chrome.tabs.onActivated.addListener(onTabActivated)
-  });
-
-  chrome.tabs.query({active: true, currentWindow: true}, (tabs: chrome.tabs.Tab[]) => {
-    selectedTabId = tabs[0].id as number;
   });
 }
 
