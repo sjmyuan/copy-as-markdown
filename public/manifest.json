@@ -1,5 +1,5 @@
 {
-  "version": "0.0.1",
+  "version": "0.0.2",
   "name": "Copy as Markdown",
   "manifest_version": 2,
   "description": "Copy the selected HTML as Markdown by right click or Ctrl+Shift+Y",
@@ -13,20 +13,12 @@
   },
   "background": {
     "scripts": [
-      "/js/background_script.bundle.js"
+      "js/background_script.bundle.js"
     ],
     "persistent": false
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "all_frames": true,
-      "js": [
-        "/js/content_script.bundle.js"
-      ]
-    }
+  "web_accessible_resources": [
+    "js/content_script.bundle.js"
   ],
   "commands": {
     "copy-as-markdown": {
@@ -41,5 +33,5 @@
     "contextMenus",
     "activeTab"
   ],
-  "content_security_policy": "default-src 'self'; script-src 'self'; connect-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:;"
+  "content_security_policy": "default-src 'self'; script-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self';"
 }
