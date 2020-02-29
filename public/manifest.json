@@ -17,16 +17,8 @@
     ],
     "persistent": false
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "all_frames": true,
-      "js": [
-        "/js/content_script.bundle.js"
-      ]
-    }
+  "web_accessible_resources": [
+    "js/content_script.bundle.js"
   ],
   "commands": {
     "copy-as-markdown": {
@@ -41,5 +33,5 @@
     "contextMenus",
     "activeTab"
   ],
-  "content_security_policy": "default-src 'self'; script-src 'self'; connect-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:;"
+  "content_security_policy": "default-src 'self'; script-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self';"
 }
