@@ -47,7 +47,8 @@ const initBackgroundScript = () => {
     chrome.contextMenus.create({
       id: 'copy-as-markdown',
       title: 'Copy as Markdown',
-      contexts: ['selection']
+      contexts: ['selection'],
+      documentUrlPatterns: ['http://*/*', 'https://*/*']
     })
     chrome.contextMenus.onClicked.addListener(onContextMenuClicked)
 
