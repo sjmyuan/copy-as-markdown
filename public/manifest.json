@@ -8,7 +8,7 @@
     "48": "img/icon-48.png",
     "114": "img/icon-114.png"
   },
-  "browser_action": {
+  "page_action": {
     "default_title": "Copy as Markdown"
   },
   "background": {
@@ -31,7 +31,8 @@
   },
   "permissions": [
     "contextMenus",
-    "activeTab"
+    "activeTab",
+    "declarativeContent"
   ],
   "homepage_url": "https://github.com/sjmyuan/copy-as-markdown"
 }

@@ -22,6 +22,10 @@ const onCommandTriggered = (command: string) => {
   }
 }
 
+const onPageActionClicked = (tab: chrome.tabs.Tab) => {
+  sendMessageToTab()
+}
+
 const onMessageReceived = (message: {selection?: string},
   sender: chrome.runtime.MessageSender,
   sendResponse: (response?: any) => void) => {
@@ -50,6 +54,19 @@ const initBackgroundScript = () => {
     chrome.commands.onCommand.addListener(onCommandTriggered);
 
     chrome.runtime.onMessage.addListener(onMessageReceived)
+
+    chrome.pageAction.onClicked.addListener(onPageActionClicked)
+
+    chrome.declarativeContent.onPageChanged.removeRules(undefined, () => {
+      chrome.declarativeContent.onPageChanged.addRules([{
+        conditions: [
+          new chrome.declarativeContent.PageStateMatcher({
+            pageUrl: {schemes: ['http', 'https']}
+          })
+        ],
+        actions: [new chrome.declarativeContent.ShowPageAction()]
+      }]);
+    });
 
   });
 }
