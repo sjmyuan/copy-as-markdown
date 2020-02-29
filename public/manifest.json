@@ -33,5 +33,5 @@
     "contextMenus",
     "activeTab"
   ],
-  "content_security_policy": "default-src 'self'; script-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self';"
+  "homepage_url": "https://github.com/sjmyuan/copy-as-markdown"
 }
