@@ -1,6 +1,6 @@
 {
   "name": "copy-as-markdown",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A chrome extension to copy HTML as Markdown",
   "main": "index.js",
   "scripts": {
