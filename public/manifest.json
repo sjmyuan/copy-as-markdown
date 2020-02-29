@@ -1,5 +1,5 @@
 {
-  "version": "0.0.1",
+  "version": "0.0.2",
   "name": "Copy as Markdown",
   "manifest_version": 2,
   "description": "Copy the selected HTML as Markdown by right click or Ctrl+Shift+Y",
