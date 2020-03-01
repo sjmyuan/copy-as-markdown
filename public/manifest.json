@@ -1,8 +1,8 @@
 {
-  "version": "0.0.2",
+  "version": "0.0.3",
   "name": "Copy as Markdown",
   "manifest_version": 2,
-  "description": "Copy the selected HTML as Markdown by right click or Ctrl+Shift+Y",
+  "description": "Copy the selected HTML as Markdown",
   "icons": {
     "16": "img/icon-16.png",
     "48": "img/icon-48.png",
