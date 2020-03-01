@@ -6,7 +6,7 @@ turndownServie.use(gfm)
 
 export const getHtmlSelection: () => string | undefined = () => {
   const selection = window.getSelection()
-  if (selection) {
+  if (selection && selection.anchorNode) {
     const range = selection.getRangeAt(0);
     const div = document.createElement("div");
     div.appendChild(range.cloneContents());
