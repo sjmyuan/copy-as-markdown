@@ -1,6 +1,7 @@
 import {turndownServie, copyToClipboard} from './types'
 
 const sendMessageToTab = () => {
+  console.log('Fetching selected html')
   chrome.tabs.query({active: true}, (tabs) => {
     if (tabs[0]) {
       chrome.tabs.executeScript(tabs[0].id as number, {file: 'js/content_script.bundle.js'})
@@ -22,7 +23,7 @@ const onCommandTriggered = (command: string) => {
   }
 }
 
-const onPageActionClicked = (tab: chrome.tabs.Tab) => {
+const onBrowserActionClicked = () => {
   sendMessageToTab()
 }
 
@@ -48,7 +49,6 @@ const initBackgroundScript = () => {
       id: 'copy-as-markdown',
       title: 'Copy as Markdown',
       contexts: ['selection'],
-      documentUrlPatterns: ['http://*/*', 'https://*/*']
     })
     chrome.contextMenus.onClicked.addListener(onContextMenuClicked)
 
@@ -56,19 +56,7 @@ const initBackgroundScript = () => {
 
     chrome.runtime.onMessage.addListener(onMessageReceived)
 
-    chrome.pageAction.onClicked.addListener(onPageActionClicked)
-
-    chrome.declarativeContent.onPageChanged.removeRules(undefined, () => {
-      chrome.declarativeContent.onPageChanged.addRules([{
-        conditions: [
-          new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: {schemes: ['http', 'https']}
-          })
-        ],
-        actions: [new chrome.declarativeContent.ShowPageAction()]
-      }]);
-    });
-
+    chrome.browserAction.onClicked.addListener(onBrowserActionClicked)
   });
 }
 
