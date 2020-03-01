@@ -1,4 +1,4 @@
-# Copy as Markdown
+# [Copy as Markdown](https://chrome.google.com/webstore/detail/copy-as-markdown/pcmnmggfchmeohmflkfocnkackgcnlln?authuser=0&hl=en)
 
 A simple chrome extension which can copy the selected HTML as Markdown to clipboard.
 
