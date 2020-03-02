@@ -4,7 +4,7 @@ const sendMessageToTab = () => {
   console.log('Fetching selected html')
   chrome.tabs.query({active: true}, (tabs) => {
     if (tabs[0]) {
-      chrome.tabs.executeScript(tabs[0].id as number, {file: 'js/content_script.bundle.js'})
+      chrome.tabs.executeScript(tabs[0].id as number, {file: 'js/content_script_get_selection.bundle.js'})
     }
     else {
       console.log('No active tab')
@@ -36,6 +36,9 @@ const onMessageReceived = (message: {selection?: string},
     console.log('Copied')
     console.log(markdown)
     sendResponse(true)
+    if (sender.tab) {
+      chrome.tabs.executeScript(sender.tab.id as number, {file: 'js/content_script_show_message.bundle.js'})
+    }
   } else {
     console.log('There is no selection.')
     sendResponse(false)

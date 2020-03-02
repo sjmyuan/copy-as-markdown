@@ -6,7 +6,8 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js']
   },
   entry: {
-    content_script: [path.join(__dirname, 'src/content_script')],
+    content_script_get_selection: [path.join(__dirname, 'src/content_script_get_selection')],
+    content_script_show_message: [path.join(__dirname, 'src/content_script_show_message')],
     background_script: [path.join(__dirname, 'src/background_script')],
   },
   output: {
