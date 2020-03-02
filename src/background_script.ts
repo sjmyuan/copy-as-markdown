@@ -50,14 +50,15 @@ const initBackgroundScript = () => {
       title: 'Copy as Markdown',
       contexts: ['selection'],
     })
-    chrome.contextMenus.onClicked.addListener(onContextMenuClicked)
-
-    chrome.commands.onCommand.addListener(onCommandTriggered);
-
-    chrome.runtime.onMessage.addListener(onMessageReceived)
-
-    chrome.browserAction.onClicked.addListener(onBrowserActionClicked)
   });
+
+  chrome.contextMenus.onClicked.addListener(onContextMenuClicked)
+
+  chrome.commands.onCommand.addListener(onCommandTriggered);
+
+  chrome.runtime.onMessage.addListener(onMessageReceived)
+
+  chrome.browserAction.onClicked.addListener(onBrowserActionClicked)
 }
 
 initBackgroundScript();
