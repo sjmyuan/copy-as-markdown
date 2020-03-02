@@ -24,8 +24,8 @@
   "commands": {
     "copy-as-markdown": {
       "suggested_key": {
-        "default": "Ctrl+Shift+Y",
-        "mac": "Command+Shift+Y"
+        "default": "Alt+Shift+Y",
+        "mac": "Alt+Shift+Y"
       },
       "description": "Copy as Markdown"
     }

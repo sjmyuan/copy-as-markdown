@@ -8,4 +8,4 @@ A simple chrome extension which can copy the selected HTML as Markdown to clipbo
 
 2. Click the right button and click `Copy as Markdown` menu.
 
-3. Press `Ctrl+Shift+Y` on Windows or `Command+Shift+Y` on Mac.
+3. Press `Alt+Shift+Y` on Windows or `Option+Shift+Y` on Mac.
